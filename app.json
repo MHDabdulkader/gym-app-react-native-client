@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "Gym App",
+    "slug": "gym gym",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo-dark.png",
+    "scheme": "frontend",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "backgroundColor":"#000000",
+    "splash": {
+      "image": "./assets/images/logo-dark.png",
+      "resizeMode": "contain",
+      "backgroundColor":  "#000000"
+    },
+
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/logo-dark.png",
+        "backgroundColor": "#000000"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/logo-dark.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/logo-dark.png",
+          "imageWidth": 400,
+          "resizeMode": "contain",
+          "backgroundColor":  "#000000"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
