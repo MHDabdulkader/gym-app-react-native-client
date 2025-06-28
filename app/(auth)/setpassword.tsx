@@ -1,33 +1,36 @@
 import GlassyBtn from "@/components/glassyBtn";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 // import { scale} from "react-native-size-matters"
 import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 import { TextInput, useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Login_Screen() {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+export default function SetPassword_Screen() {
+  
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const { colors } = useTheme();
   const router = useRouter();
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const handleSubmit = () => {
     try {
-      router.push("/(setup)/setup");
+        // if(newPassword == confirmPassword){
+
+        // }
+        router.push("/(setup)/setup");
     } catch (error) {
       console.log("Error: login Screen ", error);
     }
@@ -53,68 +56,62 @@ export default function Login_Screen() {
               </View>
             </TouchableOpacity>
 
-            <Text style={styles.titleAbsolute}>Log In</Text>
+            <Text style={styles.titleAbsolute}>Set Password</Text>
           </View>
           {/* Welcome section */}
           <View style={styles.welcomeContainer}>
-            <View style={{ paddingVertical: 30 }}>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 24,
-                  fontWeight: "bold",
-                  textAlign: "center",
-                }}
-              >
-                Welcome
-              </Text>
-            </View>
+           
+              
             <View style={{ width: "85%" }}>
               <Text
                 style={{ color: "white", fontSize: 14, textAlign: "center" }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Enter and confirm your new password to complete the reset.
               </Text>
             </View>
           </View>
           {/* Input section */}
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Username or Email</Text>
-
-            <TextInput
-              // label="username"
-              value={username}
-              onChangeText={(text) => setUsername(text)}
-              style={styles.inputText}
-              textColor="black"
-            />
-            <Text style={styles.inputLabel}>Password</Text>
+           
+            <Text style={styles.inputLabel}>New Password</Text>
             <TextInput
               //label="password"
               textColor="black"
-              secureTextEntry={showPassword}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
+              secureTextEntry={!showNewPassword}
+              value={newPassword}
+              onChangeText={(text) => setNewPassword(text)}
               right={
                 <TextInput.Icon
                   color="red"
-                  icon={showPassword ? "eye-off" : "eye"}
-                  onPress={() => setShowPassword(!showPassword)}
+                  icon={showNewPassword ? "eye-off" : "eye"}
+                  onPress={() => setShowNewPassword(!showNewPassword)}
                 />
               }
               style={styles.inputText}
             />
-            <TouchableOpacity onPress={()=> router.push("/(auth)/forgetpassword")}>
-              <Text style={[styles.inputLabel, { textAlign: "right" }]}>
-                Forget Password?
-              </Text>
-            </TouchableOpacity>
+
+            <Text style={styles.inputLabel}>Confirm Password</Text>
+            <TextInput
+              //label="password"
+              textColor="black"
+              secureTextEntry={!showConfirmPassword}
+              value={confirmPassword}
+              onChangeText={(text) => setConfirmPassword(text)}
+              right={
+                <TextInput.Icon
+                  color="red"
+                  icon={showConfirmPassword ? "eye-off" : "eye"}
+                  onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              }
+              style={styles.inputText}
+            />
+           
           </View>
           {/* submit bnt */}
           <View>
             <GlassyBtn
-              text="Log in"
+              text="Reset Password"
               onPress={handleSubmit} // router.push("/(setup)/setup")
               tint="prominent"
               intensity={80}
@@ -124,58 +121,7 @@ export default function Login_Screen() {
             />
           </View>
           {/* sign in with other media */}
-          <View className="mt-6">
-            <Text
-              style={{
-                color: "#FFFFFF",
-                fontSize: 16,
-                fontWeight: 300,
-                textAlign: "center",
-              }}
-            >
-              or log in with
-            </Text>
-            <View className="flex-row gap-8 mt-6">
-              <View
-                style={{
-                  backgroundColor: "white",
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  borderRadius: "40%",
-                }}
-              >
-                <AntDesign name="google" size={24} color="#896CFE" />
-              </View>
-              <View
-                style={{
-                  backgroundColor: "white",
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  borderRadius: "40%",
-                }}
-              >
-                <FontAwesome5 name="facebook" size={24} color="#896CFE" />
-              </View>
-              <View
-                style={{
-                  backgroundColor: "white",
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  borderRadius: "40%",
-                }}
-              >
-                <Ionicons name="finger-print" size={24} color="#896CFE" />
-              </View>
-            </View>
-          </View>
-
-          {/* sign Up btn */}
-          <View className="flex-row mt-16 gap-3">
-            <Text className="color-white text-lg ">Don’t have an account?</Text>
-            <TouchableOpacity onPress={() => router.push("/(auth)/register")}>
-              <Text className="color-[#E2F163] text-lg">Sign Up</Text>
-            </TouchableOpacity>
-          </View>
+         
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </SafeAreaView>

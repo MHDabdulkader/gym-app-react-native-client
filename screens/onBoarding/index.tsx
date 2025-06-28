@@ -75,7 +75,7 @@ export default function onboardingScreens() {
             {/* <Text style={{fontSize: 18, marginTop: 10, fontWeight: 400,textAlign:"center"}}>{item.subtitle}</Text> */}
 
              
-              <View style={styles.navibtnContainer}>
+              <View className=""  style={styles.navibtnContainer}>
                 {screenData.map((_, idx) => (
                   <TouchableOpacity
                     key={idx}

@@ -1,16 +1,17 @@
+import "@/global.css";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import "react-native-reanimated";
-
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PaperProvider, ThemeProvider } from "react-native-paper";
+import "react-native-reanimated";
 
 import { DarkTheme } from "@/theme/DarkTheme";
 import { LightTheme } from "@/theme/LightTheme";
 import { useEffect, useState } from "react";
 
 export default function RootLayout() {
+  
   const colorScheme = useColorScheme();
   const [navigateTheme, setNavigateTheme] = 
         useState(colorScheme === "dark" ? DarkTheme : LightTheme);
@@ -34,6 +35,7 @@ export default function RootLayout() {
   //   return null;
   // }
   useEffect(()=>{
+   
    // console.log(navigateTheme);
     setNavigateTheme(DarkTheme);
 
@@ -45,7 +47,7 @@ export default function RootLayout() {
         <ThemeProvider theme={navigateTheme}>
           <Stack initialRouteName="(onboarding)">
             
-            <Stack.Screen name="(auth)"  />
+            <Stack.Screen name="(auth)"  options={{headerShown:false}} />
             <Stack.Screen name="(onboarding)"  options={{headerShown:false}}/>
             <Stack.Screen name="+not-found" />
           </Stack>

@@ -1,37 +1,39 @@
+
 import GlassyBtn from "@/components/glassyBtn";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 // import { scale} from "react-native-size-matters"
 import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 import { TextInput, useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Login_Screen() {
+
+
+export default function ForgetPassword_Screen() {
   const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  
   const { colors } = useTheme();
   const router = useRouter();
+ 
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const handleSubmit = () => {
+  
+  const handleSubmit = ()=>{
     try {
-      router.push("/(setup)/setup");
+      router.push("/(auth)/setpassword")
     } catch (error) {
-      console.log("Error: login Screen ", error);
+      console.log("Error: login Screen ", error)
     }
-  };
+  }
   return (
     <SafeAreaView style={styles.backgroundContainer}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -53,7 +55,7 @@ export default function Login_Screen() {
               </View>
             </TouchableOpacity>
 
-            <Text style={styles.titleAbsolute}>Log In</Text>
+            <Text style={styles.titleAbsolute}>Forgotten Password</Text>
           </View>
           {/* Welcome section */}
           <View style={styles.welcomeContainer}>
@@ -66,15 +68,14 @@ export default function Login_Screen() {
                   textAlign: "center",
                 }}
               >
-                Welcome
+                Forget Password?
               </Text>
             </View>
             <View style={{ width: "85%" }}>
               <Text
                 style={{ color: "white", fontSize: 14, textAlign: "center" }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Enter your email address and we'll send you a link to reset your password.
               </Text>
             </View>
           </View>
@@ -82,39 +83,19 @@ export default function Login_Screen() {
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>Username or Email</Text>
 
-            <TextInput
-              // label="username"
+            <TextInput 
+             // label="username"
               value={username}
-              onChangeText={(text) => setUsername(text)}
-              style={styles.inputText}
-              textColor="black"
-            />
-            <Text style={styles.inputLabel}>Password</Text>
-            <TextInput
-              //label="password"
-              textColor="black"
-              secureTextEntry={showPassword}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              right={
-                <TextInput.Icon
-                  color="red"
-                  icon={showPassword ? "eye-off" : "eye"}
-                  onPress={() => setShowPassword(!showPassword)}
-                />
-              }
-              style={styles.inputText}
-            />
-            <TouchableOpacity onPress={()=> router.push("/(auth)/forgetpassword")}>
-              <Text style={[styles.inputLabel, { textAlign: "right" }]}>
-                Forget Password?
-              </Text>
-            </TouchableOpacity>
+              onChangeText={text => setUsername(text)}
+              style={styles.inputText} 
+              textColor="black" />
+           
+           
           </View>
           {/* submit bnt */}
           <View>
             <GlassyBtn
-              text="Log in"
+              text="Continue"
               onPress={handleSubmit} // router.push("/(setup)/setup")
               tint="prominent"
               intensity={80}
@@ -123,59 +104,9 @@ export default function Login_Screen() {
               textStyle={{ fontSize: 20, fontWeight: "bold" }}
             />
           </View>
-          {/* sign in with other media */}
-          <View className="mt-6">
-            <Text
-              style={{
-                color: "#FFFFFF",
-                fontSize: 16,
-                fontWeight: 300,
-                textAlign: "center",
-              }}
-            >
-              or log in with
-            </Text>
-            <View className="flex-row gap-8 mt-6">
-              <View
-                style={{
-                  backgroundColor: "white",
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  borderRadius: "40%",
-                }}
-              >
-                <AntDesign name="google" size={24} color="#896CFE" />
-              </View>
-              <View
-                style={{
-                  backgroundColor: "white",
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  borderRadius: "40%",
-                }}
-              >
-                <FontAwesome5 name="facebook" size={24} color="#896CFE" />
-              </View>
-              <View
-                style={{
-                  backgroundColor: "white",
-                  paddingVertical: 10,
-                  paddingHorizontal: 10,
-                  borderRadius: "40%",
-                }}
-              >
-                <Ionicons name="finger-print" size={24} color="#896CFE" />
-              </View>
-            </View>
-          </View>
+         
 
-          {/* sign Up btn */}
-          <View className="flex-row mt-16 gap-3">
-            <Text className="color-white text-lg ">Don’t have an account?</Text>
-            <TouchableOpacity onPress={() => router.push("/(auth)/register")}>
-              <Text className="color-[#E2F163] text-lg">Sign Up</Text>
-            </TouchableOpacity>
-          </View>
+        
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </SafeAreaView>
@@ -220,10 +151,11 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   inputContainer: {
-    marginTop: 20,
+    marginTop: 50,
+    // justifyContent:"center",
     backgroundColor: "#B3A0FF",
     width: "100%",
-    height: "30%",
+    // height: "30%",
     paddingHorizontal: 40,
     paddingVertical: 30,
     gap: 10,
