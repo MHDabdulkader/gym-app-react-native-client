@@ -10,6 +10,10 @@ import { DarkTheme } from "@/theme/DarkTheme";
 import { LightTheme } from "@/theme/LightTheme";
 import { useEffect, useState } from "react";
 
+
+
+
+
 export default function RootLayout() {
   
   const colorScheme = useColorScheme();
@@ -46,10 +50,11 @@ export default function RootLayout() {
       <PaperProvider theme={navigateTheme}>
         <ThemeProvider theme={navigateTheme}>
           <Stack initialRouteName="(onboarding)">
-            
+            {/* <Stack.Screen name="index" /> */}
             <Stack.Screen name="(auth)"  options={{headerShown:false}} />
             <Stack.Screen name="(onboarding)"  options={{headerShown:false}}/>
             <Stack.Screen name="(setup)" options={{headerShown: false}}/>
+            <Stack.Screen name="(tabs)" options={{headerShown:false}} />
             <Stack.Screen name="+not-found" />
           </Stack>
           <StatusBar style={colorScheme === "dark" ? "dark" : "light"} />

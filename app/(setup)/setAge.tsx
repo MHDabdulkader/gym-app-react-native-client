@@ -1,14 +1,36 @@
+import GlassyBtn from "@/components/glassyBtn";
+import ScreenHeader from "@/components/ScreenHeader";
+import { useRouter } from "expo-router";
 import { Text, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function Age_screen(){
+
+    const router = useRouter();
     return(
-        <SafeAreaProvider>
-            <View>
-                <Text>
-                    Set age
+        <SafeAreaView style={{backgroundColor:"#232323", flex: 1}}>
+            <ScreenHeader btnText="Back" toBack="/(setup)/setGender"/>
+            <View style={{alignItems:"center", marginTop: 20}}>
+                <View>
+                     <Text style={{fontSize: 30, color:"#ffffff", fontWeight:"bold"}}>
+                    How Old Are You?
                 </Text>
+                </View>
+                <View style={{paddingHorizontal: 20, paddingVertical: 30, marginTop: 20}}>
+                    <Text style={{textAlign:"center", color: "#ffffff", fontSize: 18}}>
+                        We’re here to support your goals.
+Sharing your gender helps us tailor
+workouts and progress tracking to you.
+                    </Text>
+                </View>
+                {/* // TODO: animation */}
+                <View>
+                    <Text style={{color:"#fff"}}>Todo: Animations</Text>
+                </View>
+                <GlassyBtn text="Continue" onPress={()=>router.push("/(setup)/setWeight")}
+                    btnStyle={{paddingVertical:10}}
+                    containerStyle={{marginTop: 40}}    
+                />
             </View>
-        </SafeAreaProvider>
+        </SafeAreaView>
     )
 }

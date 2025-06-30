@@ -32,7 +32,10 @@ export default function onboardingScreens() {
       Ref.current?.scrollToIndex({ index: indexScreen + 1 });
       // setScreenIndex(screenIndex+1);
     } else {
-      router.replace("/(auth)/login");
+      // TODO for the main app flow, 
+      //router.replace("/(auth)/login");
+      // ** change direct redirect home tabs 
+      router.replace("/(tabs)/home")
     }
   };
   return (
