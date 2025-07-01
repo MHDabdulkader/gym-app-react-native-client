@@ -5,6 +5,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 // import { scale} from "react-native-size-matters"
+import type { AppDispatch, RootState } from "@/redux/Store/store";
+import { postLoginTunk } from "@/redux/slices/login/loginTunk";
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -17,17 +19,29 @@ import {
 } from "react-native";
 import { TextInput, useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { useDispatch, useSelector } from "react-redux";
 export default function Login_Screen() {
+  // ** states
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  // ** redux
+  const Login = useSelector((state: RootState) => state.Login);
+  const dispatch = useDispatch<AppDispatch>();
+
   const { colors } = useTheme();
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
-      router.push("/(setup)/setup");
+      const requestData = { username, password };
+      const response = await dispatch(postLoginTunk(requestData));
+      if(postLoginTunk.fulfilled.match(response)){
+        router.push("/(setup)/setup");
+      }else{
+        console.log("Log in failed", response.payload || response.error)
+      }
+      
     } catch (error) {
       console.log("Error: login Screen ", error);
     }
@@ -45,7 +59,7 @@ export default function Login_Screen() {
               style={styles.backBtn}
               onPress={() => {
                 console.log("Prev btn prees");
-                router.push("/(onboarding)/onboarding");
+                router.push("/(onboarding)");
               }}
             >
               <View>
@@ -105,7 +119,9 @@ export default function Login_Screen() {
               }
               style={styles.inputText}
             />
-            <TouchableOpacity onPress={()=> router.push("/(auth)/forgetpassword")}>
+            <TouchableOpacity
+              onPress={() => router.push("/(auth)/forgetpassword")}
+            >
               <Text style={[styles.inputLabel, { textAlign: "right" }]}>
                 Forget Password?
               </Text>

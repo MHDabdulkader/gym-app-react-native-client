@@ -6,14 +6,14 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 // import { scale} from "react-native-size-matters"
 import {
-    Keyboard,
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    View,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import { TextInput, useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -48,7 +48,7 @@ export default function Register_Screen() {
               style={styles.backBtn}
               onPress={() => {
                 console.log("Prev btn prees");
-                router.push("/(onboarding)/onboarding");
+                router.push("/(setup)/setup");
               }}
             >
               <View>
