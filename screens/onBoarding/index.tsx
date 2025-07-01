@@ -33,9 +33,9 @@ export default function onboardingScreens() {
       // setScreenIndex(screenIndex+1);
     } else {
       // TODO for the main app flow, 
-      //router.replace("/(auth)/login");
+      router.replace("/(auth)/login");
       // ** change direct redirect home tabs 
-      router.replace("/(tabs)/home")
+      // router.replace("/(tabs)/home")
     }
   };
   return (
