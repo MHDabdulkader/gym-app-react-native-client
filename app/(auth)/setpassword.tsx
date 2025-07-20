@@ -48,7 +48,7 @@ export default function SetPassword_Screen() {
               style={styles.backBtn}
               onPress={() => {
                 console.log("Prev btn prees");
-                router.push("/(onboarding)");
+                router.push("/(auth)/login");
               }}
             >
               <View>

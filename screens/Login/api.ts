@@ -18,7 +18,7 @@ export const postLogin= async(requestData:loginRequestType)=>{
                     id: "1",
                     username:"test",
                     token:"test-token-1234"
-                }
+                },
             }
         }else{
             throw {

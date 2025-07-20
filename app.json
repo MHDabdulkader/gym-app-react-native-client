@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Gym App",
-    "slug": "gym gym",
+    "slug": "gym-gym",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo-dark.png",
@@ -16,13 +16,16 @@
     },
 
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mhdabdulkader.gymapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo-dark.png",
         "backgroundColor": "#000000"
-      }
+      },
+       "edgeToEdgeEnabled": true,
+      "package": "com.mhdabdulkader.gymapp"
     },
     "web": {
       "bundler": "metro",
@@ -41,7 +44,15 @@
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -63,8 +63,8 @@ export default function Goal_screen() {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#232323", flex: 1 }}>
-      <ScreenHeader btnText="Back" toBack="/(setup)/setAge" />
-      <View style={{ alignItems: "center", marginTop: 20 }}>
+      <ScreenHeader btnText="Back" toBack="/(setup)/setHeight" />
+      <View style={{ alignItems: "center", marginTop: 5 }}>
         <View>
           <Text style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold" }}>
             What Is Your Goal?

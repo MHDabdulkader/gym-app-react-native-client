@@ -3,11 +3,11 @@ import ScreenHeader from "@/components/ScreenHeader";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -61,8 +61,8 @@ export default function ActivityLevel_screen() {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#232323", flex: 1 }}>
-      <ScreenHeader btnText="Back" toBack="/(setup)/setAge" />
-      <View style={{ alignItems: "center", marginTop: 20 }}>
+      <ScreenHeader btnText="Back" toBack="/(setup)/setGoal" />
+      <View style={{ alignItems: "center", marginTop: 5 }}>
         <View>
           <Text style={{ fontSize: 30, color: "#ffffff", fontWeight: "bold" }}>
            Physical Activity Level

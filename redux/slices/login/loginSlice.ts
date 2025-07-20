@@ -13,7 +13,7 @@ const LoginSlice = createSlice({
     name: "Login",
     initialState,
     reducers:{
-
+       
     },
     extraReducers:(builder) =>{
         builder
@@ -21,7 +21,7 @@ const LoginSlice = createSlice({
                 state.isError = false;
                 state.isLoading = true;
                 state.users = null;
-                state.error = null;
+                state.error = "something wrong";
             })
             .addCase(postLoginTunk.fulfilled, (state, action)=>{
                 state.users = action.payload;

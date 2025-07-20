@@ -1,5 +1,7 @@
 import GlassyBtn from "@/components/glassyBtn";
 import ScreenHeader from "@/components/ScreenHeader";
+import { getAuthWithToken } from "@/redux/slices/auth/authSelector";
+import { setSetupScreen } from "@/redux/Store/mobileAsyncStore";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -13,36 +15,40 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { Pressable } from "react-native-gesture-handler";
 import { Avatar } from "react-native-paper";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-
-
+import { useSelector } from "react-redux";
 
 export default function ProfileInfo_screen() {
   // ** router
   const router = useRouter();
   // ** input states
-  const [fullname, setFullname] = useState<string> ("");
-  const [nickname, setNickname] = useState<string> ("");
-  const [email, setEmail] = useState<string> ("");
-  const [phonenumber, setPhonenumber] = useState<string> ("");
+  const [fullname, setFullname] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phonenumber, setPhonenumber] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // TODO: useEffect to if load user informations
+  // ** auth:
+  const auth = useSelector(getAuthWithToken);
+
+  // TODO: useEffect to if load user informations 
+
+  // TODO: First did not have image set defualt avator image, otherwise user upload image,
 
   // ** handle fn
-  const handleSubmit = ()=>{
-    try{
-
-      const requestData = [
-        fullname, nickname, email, phonenumber
-      ]
-      router.push("/(tabs)/home")
-
-    }catch(e){
-      console.log("----> Error: profile info screen! ", e)
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      await setSetupScreen();
+      const requestData = [fullname, nickname, email, phonenumber];
+      router.push("/(tabs)/home");
+    } catch (e) {
+      console.log("----> Error: profile info screen! ", e);
     }
-  }
+  };
 
   return (
     <SafeAreaView style={{ backgroundColor: "#232323", flex: 1 }}>
@@ -51,17 +57,16 @@ export default function ProfileInfo_screen() {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
         >
-          
           <ScrollView
             contentContainerStyle={{
-              flexGrow : 1,
+              flexGrow: 1,
               padding: 16,
               //justifyContent: "center"
             }}
             keyboardShouldPersistTaps="handled"
           >
-            <ScreenHeader btnText="Back" toBack="/(setup)/setWeight" />
-            <View style={{ width: "100%", marginTop: 10 }}>
+            <ScreenHeader btnText="Back" toBack="/(setup)/setActivityLevel" />
+            <View style={{ width: "100%", marginTop: 5 }}>
               <View>
                 <Text
                   style={{
@@ -92,7 +97,7 @@ export default function ProfileInfo_screen() {
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </Text>
               </View>
-              
+
               <View
                 style={{
                   backgroundColor: "#896CFE",
@@ -118,7 +123,12 @@ export default function ProfileInfo_screen() {
                     height: "100%",
                   }}
                 >
-                  <FontAwesome6 name="pen" size={24} color="black" />
+                  <Pressable
+                    onPress={()=>console.log("Btn press")}
+                  >
+                    <FontAwesome6 name="pen" size={24} color="black" />
+                  </Pressable>
+
                 </View>
               </View>
 
@@ -152,7 +162,6 @@ export default function ProfileInfo_screen() {
                 </View>
                 {/* //* *  ------------------- Nick Name ---------------- */}
                 <View>
-                  
                   <Text
                     style={{
                       fontSize: 20,

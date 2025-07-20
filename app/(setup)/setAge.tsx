@@ -9,7 +9,7 @@ export default function Age_screen(){
     return(
         <SafeAreaView style={{backgroundColor:"#232323", flex: 1}}>
             <ScreenHeader btnText="Back" toBack="/(setup)/setGender"/>
-            <View style={{alignItems:"center", marginTop: 20}}>
+            <View style={{alignItems:"center", marginTop: 5}}>
                 <View>
                      <Text style={{fontSize: 30, color:"#ffffff", fontWeight:"bold"}}>
                     How Old Are You?

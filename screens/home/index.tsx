@@ -1,4 +1,4 @@
-import AntDesign from '@expo/vector-icons/AntDesign';
+import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -25,6 +25,41 @@ const recommendationData = [
     title: "Full Body stretching",
     time: "12 Minutes",
     calories: "100 Kcal",
+  },
+  {
+    id: "2",
+    backgroundImageURL: require("@/assets/images/ex2.png"),
+    isFavorite: false,
+    title: "Full Body stretching",
+    time: "12 Minutes",
+    calories: "100 Kcal",
+  },
+];
+const WeeklyChallenge = [
+  {
+    challengeTitle: "Plank With hip Twist",
+    sampleImageURL: require("@/assets/images/ex2.png")
+  }
+];
+
+const articleAndTipData = [
+  {
+    id: "0",
+    backgroundImageURL: require("@/assets/images/ex3.png"),
+    isFavorite: true,
+    title: "T-Bar Row",
+  },
+  {
+    id: "1",
+    backgroundImageURL: require("@/assets/images/ex2.png"),
+    isFavorite: false,
+    title: "Full Body stretching",
+  },
+  {
+    id: "2",
+    backgroundImageURL: require("@/assets/images/ex2.png"),
+    isFavorite: false,
+    title: "Full Body stretching",
   },
 ];
 
@@ -104,7 +139,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
-
+      {/* ============================== recommendation section ======================================== */}
       <View style={styles.paddingContainer}>
         <View style={{ marginTop: 10, paddingVertical: 10 }}>
           <View
@@ -130,18 +165,34 @@ export default function HomeScreen() {
               keyExtractor={(item) => item.id.toString()}
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 10, gap: 20 }}
+              contentContainerStyle={{ paddingHorizontal: 10, gap: 5 }}
               renderItem={({ item }) => (
                 <View
                   style={{
                     width: 157,
                     overflow: "hidden",
-                    marginRight: 20,
-                    position:"relative"
+                    // marginRight: 20,
+                    position: "relative",
                     // borderTopRightRadius: 20
                   }}
                 >
-                  <View style={{position:"absolute", zIndex: 2, alignItems:"flex-end", width:"100%", marginTop: 10, paddingHorizontal: 10}}> <FontAwesome name="star" size={24} color={item.isFavorite? "#E2F163": "white"} /></View>
+                  <View
+                    style={{
+                      position: "absolute",
+                      zIndex: 2,
+                      alignItems: "flex-end",
+                      width: "100%",
+                      marginTop: 10,
+                      paddingHorizontal: 10,
+                    }}
+                  >
+
+                    <FontAwesome
+                      name="star"
+                      size={24}
+                      color={item.isFavorite ? "#E2F163" : "white"}
+                    />
+                  </View>
 
                   <View>
                     <Image
@@ -157,12 +208,20 @@ export default function HomeScreen() {
                     />
                   </View>
                   <View
-                    style={{position: "absolute", height: "100%", justifyContent:"center", width:"100%", alignItems:"flex-end", marginTop: 20, paddingHorizontal: 10}}
+                    style={{
+                      position: "absolute",
+                      height: "100%",
+                      justifyContent: "center",
+                      width: "100%",
+                      alignItems: "flex-end",
+                      marginTop: 20,
+                      paddingHorizontal: 10,
+                    }}
                   >
                     {/* <View style={{backgroundColor:"white", borderRadius: "50%"}}>  */}
-                        <AntDesign name="play" size={24} color="#896CFE" />
+                    <AntDesign name="play" size={24} color="#896CFE" />
                     {/* </View> */}
-                </View>
+                  </View>
                   <View
                     style={{
                       paddingHorizontal: 10,
@@ -213,13 +272,116 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
+      {/* ===================================== Weekly Challenge  ===================== */}
+      <View style={{ backgroundColor: "#B3A0FF" }}>
+        <View style={[styles.paddingContainer, { paddingVertical: 20 }]}>
+          <View style={{ backgroundColor: "#232323", width: "100%", borderRadius: 20, justifyContent: "space-between", flexDirection: "row" }}>
+            <View style={{ width: "50%", alignItems: "center", justifyContent: "center" }}>
+              <Text style={{ color: "#E2F163", fontSize: 24, fontWeight: 800, textAlign: "center" }}>Weekly{"\n"}Challenge</Text>
+              <Text style={{ color: "white", textAlign: "center", fontSize: 12 }}>{WeeklyChallenge[0].challengeTitle}</Text>
+            </View>
+            <View style={{ width: "50%" }}>
+              <Image
+                source={WeeklyChallenge[0].sampleImageURL}
+                resizeMode="contain"
+                style={{
+                  height: 120,
+                  // width: 0,
+                  width: "100%",
+                  overflow: "hidden",
+                  borderRadius: 20
+                }}
+              />
+            </View>
+          </View>
+
+
+        </View>
+      </View>
+
+      {/* =================== Article and tips */}
+      <View style={styles.paddingContainer}>
+        <View style={{paddingVertical: 20,gap: 10}}>
+          <View>
+            <Text style={{color:"#E2F163", fontSize: 18, fontWeight: 500}}>Article & Tips</Text>
+          </View>
+          <FlatList
+            data={articleAndTipData}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ gap: 5 }}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  width: 157,
+                  overflow: "hidden",
+                  // marginRight: 10,
+                  position: "relative",
+                  // borderTopRightRadius: 20
+                }}
+              >
+                <View
+                  style={{
+                    position: "absolute",
+                    zIndex: 2,
+                    alignItems: "flex-end",
+                    width: "100%",
+                    marginTop: 10,
+                    paddingHorizontal: 10,
+                  }}
+                >
+
+                  <FontAwesome
+                    name="star"
+                    size={24}
+                    color={item.isFavorite ? "#E2F163" : "white"}
+                  />
+                </View>
+
+                <View>
+                  <Image
+                    source={item.backgroundImageURL}
+                    resizeMode="contain"
+                    style={{
+                      height: 100,
+                      width: "100%",
+                      overflow: "hidden",
+                      borderTopRightRadius: 20,
+                      borderTopLeftRadius: 20,
+                    }}
+                  />
+                </View>
+               
+                <View
+                  style={{
+                    paddingHorizontal: 10,
+                    
+                    
+                    paddingVertical: 10,
+                    borderBottomEndRadius: 20,
+                    borderBottomStartRadius: 20,
+                    //borderColor: "white",
+                  }}
+                >
+                  <Text style={{ color: "#ffffff", fontSize: 14 }}>
+                    {item.title}
+                  </Text>
+
+                </View>
+              </View>
+            )}
+          />
+        </View>
+
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   paddingContainer: {
-    paddingHorizontal: 40,
+    paddingHorizontal: 15,
   },
   usernameText: {
     color: "#896CFE",
