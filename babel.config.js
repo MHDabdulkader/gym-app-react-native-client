@@ -2,22 +2,20 @@ module.exports = function (api) {
   api.cache(true);
   return {
     presets: [
-      ['babel-preset-expo', { jsxImportSource: "nativewind" }],
-      "nativewind/babel",
+      ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
+       'nativewind/babel',
     ],
     plugins: [
-      [
-        'module-resolver',
-        {
-          root: ['./'],
-          alias: {
-            '@': './',
-            "@assets": "./assets",
-          },
+      ['module-resolver', {
+        root: ['./'],
+        alias: {
+          '@': './',
+          '@assets': './assets',
         },
-      ],
-      // React Native Paper sometimes suggests adding this for gestures support:
+      }],
+      //'nativewind/babel',
       'react-native-reanimated/plugin',
+      
     ],
   };
 };

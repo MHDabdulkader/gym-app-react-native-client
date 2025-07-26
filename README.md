@@ -2,6 +2,24 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+## Screens snapshot:
+<details> 
+<summary>Click to expand</summary>
+
+
+<details> 
+<summary>Home Screen</summary>
+
+![home screen](image.png)
+
+</details>
+
+
+</details>
+
+
+
+
 ## Get started
 
 1. Install dependencies

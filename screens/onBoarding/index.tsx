@@ -16,7 +16,7 @@ import GlassyBtn from "@/components/glassyBtn";
 import { onboardingScreenDataType } from "./types";
 import { onboardingScreenData } from "./utils";
 
-const { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get("screen");
 
 export default function onboardingScreens() {
   // const { colors } = useTheme();
@@ -32,50 +32,54 @@ export default function onboardingScreens() {
       Ref.current?.scrollToIndex({ index: indexScreen + 1 });
       // setScreenIndex(screenIndex+1);
     } else {
+      // TODO for the main app flow, 
       router.replace("/(auth)/login");
+      // ** change direct redirect home tabs 
+      // router.replace("/(tabs)/home")
     }
   };
   return (
-    <FlatList
-      ref={Ref}
-      data={screenData}
-      horizontal
-      pagingEnabled
-      showsHorizontalScrollIndicator={false}
-      onMomentumScrollEnd={(e) => {
-        const index = Math.round(e.nativeEvent.contentOffset.x / width);
-        setIndexScreen(index);
-      }}
-      keyExtractor={(_, idx) => idx.toString()}
-      renderItem={({ item }) => (
-        <ImageBackground
-          source={item.background}
-          style={styles.background}
-          resizeMode="cover"
-        >
-          <View
-            style={{
-              ...StyleSheet.absoluteFillObject,
-              backgroundColor: `${indexScreen === 0} ? "rgba(0, 0, 0, 0.4)": "rgba(0, 0, 0, 0.2)"`, // ← adjust darkness here
-            }}
-          />
-
-          <View style={styles.contentContainer}>
-            <MotiImage source={item.icon} style={styles.iconImage} />
-            <Text
+    //<SafeAreaView style={{flex:1}}>
+      <FlatList
+        ref={Ref}
+        data={screenData}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={(e) => {
+          const index = Math.round(e.nativeEvent.contentOffset.x / width);
+          setIndexScreen(index);
+        }}
+        keyExtractor={(_, idx) => idx.toString()}
+        renderItem={({ item }) => (
+          <ImageBackground
+            source={item.background}
+            style={styles.background}
+            resizeMode="cover"
+          >
+            <View
               style={{
-                fontSize: 24,
-                marginTop: 10,
-                fontWeight: 600,
-                textAlign: "center",
+                ...StyleSheet.absoluteFillObject,
+                backgroundColor: `${indexScreen === 0} ? "rgba(0, 0, 0, 0.4)": "rgba(0, 0, 0, 0.2)"`, // ← adjust darkness here
               }}
-            >
-              {item.title}
-            </Text>
-            {/* <Text style={{fontSize: 18, marginTop: 10, fontWeight: 400,textAlign:"center"}}>{item.subtitle}</Text> */}
+            />
 
-             
-              <View className=""  style={styles.navibtnContainer}>
+            <View style={styles.contentContainer}>
+              <MotiImage source={item.icon} style={styles.iconImage} />
+              <Text
+                style={{
+                  fontSize: 24,
+                  marginTop: 10,
+                  fontWeight: 600,
+                  textAlign: "center",
+                }}
+              >
+                {item.title}
+              </Text>
+              {/* <Text style={{fontSize: 18, marginTop: 10, fontWeight: 400,textAlign:"center"}}>{item.subtitle}</Text> */}
+
+
+              <View className="" style={styles.navibtnContainer}>
                 {screenData.map((_, idx) => (
                   <TouchableOpacity
                     key={idx}
@@ -90,12 +94,12 @@ export default function onboardingScreens() {
                   />
                 ))}
               </View>
-            
-             
-              
-            
-          </View>
-          {/* <TouchableOpacity
+
+
+
+
+            </View>
+            {/* <TouchableOpacity
                 onPress={handleNext}
                 style={styles.btnContainer}
               >
@@ -104,29 +108,33 @@ export default function onboardingScreens() {
                 </Text>
               </TouchableOpacity> */}
 
-            <GlassyBtn onPress={handleNext} text={item.btnText}/>
-        </ImageBackground>
-      )}
-    />
+            <GlassyBtn onPress={handleNext} text={item.btnText} />
+          </ImageBackground>
+        )}
+      />
+   // </SafeAreaView>
+
   );
 }
 
 const styles = StyleSheet.create({
   background: {
+    flex: 1,
     width,
     height,
     justifyContent: "center",
+    // alignItems:"center"
     //opacity: .4
   },
   contentContainer: {
     height: 300,
     backgroundColor: "#896CFE",
-   
+
     //  paddingHorizontal: 10
     padding: 20,
     // marginTop: 20,
     alignItems: "center",
-    justifyContent:"center",
+    justifyContent: "center",
     // opacity: 0.8
     //backgroundColor:
   },
@@ -156,6 +164,6 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "center",
-    
+
   },
 });
